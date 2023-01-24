@@ -1,9 +1,16 @@
 <template>
   
-  <Navbar/>
+<div class="hha">
 
 
 
+<Loading/>
+
+<!-- <Login/> -->  
+<!-- <Navbar/>  -->
+
+
+</div>
   
 
 
@@ -13,11 +20,15 @@
 <script>
 
 import Navbar from './components/navbar.vue'
+import Login from './components/login.vue'
+import Loading from './pages/loading.vue'
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    Login,
+    Loading,
   }
 }
 </script>
@@ -31,4 +42,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
 </style>
