@@ -36,9 +36,10 @@
   <style lang="scss" scoped>
     .nav{
       height: 80px;
-      background-color: rgba(128, 78, 255, 0.09);
-      width: 90%;
-      border-radius: 50px !important; 
+      background-color: black;
+      width: 100%;
+      
+      border-radius: 50px 50px 0px 0px !important; 
     }
 
   

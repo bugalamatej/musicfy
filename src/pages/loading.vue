@@ -1,17 +1,24 @@
 <template>
 
  <div class="container-fluid background">
+    
     <img src="https://media2.giphy.com/media/93ftaGQwuPfzwdIDuS/giphy.gif" 
     class="carti"
     alt="">
+    <H3>Vitajte na musicfy</H3>
     <div class="progress">
         <div class="progress-bar fill-5" role="progressbar"
-            style="width: 30%" aria-valuenow="100" aria-valuemin="0"
+            style="" aria-valuenow="100" aria-valuemin="0"
             aria-valuemax="100">
         </div>
     </div>
+    <button  type="button" class="btn btn-primary mt-5 ">Pokračovať</button>
+
+
+    
+
  </div>
-   
+ 
 </template>
      
      <script>
@@ -24,9 +31,12 @@
      <!-- Add "scoped" attribute to limit CSS to this component only -->
      <style lang="scss" scoped>
      .background{
-        background-image: url("https://bestanimations.com/media/storms/533684316animated-lighning-bolt-strike-storm-gif-1.gif");
-        height: 2000px;
-        overflow-x: hidden;
+        background-image: url("https://data.whicdn.com/images/269137684/original.gif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 900px;
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
         .carti{
             height: 200px !important;
         }
@@ -75,5 +85,8 @@
         background-color: var(--bs-progress-bar-bg);
         transition: var(--bs-progress-bar-transition);
     }
+
+
+
      </style>
      
