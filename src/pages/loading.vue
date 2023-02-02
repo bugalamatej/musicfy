@@ -1,92 +1,112 @@
 <template>
-
- <div class="container-fluid background">
-    
-    <img src="https://media2.giphy.com/media/93ftaGQwuPfzwdIDuS/giphy.gif" 
-    class="carti"
-    alt="">
-    <H3>Vitajte na musicfy</H3>
-    <div class="progress">
-        <div class="progress-bar fill-5" role="progressbar"
-            style="" aria-valuenow="100" aria-valuemin="0"
-            aria-valuemax="100">
-        </div>
+    <div class="bg">
+      <div class="jumbotron jumbotron-fluid text-white text-center">
+        <h1 class="display-4 animated bounce delay-2s">Musicfy</h1>
+        <p class="lead">Stream your favorite tunes anytime, anywhere.</p>
+        <img src="https://awc.edu/wp-content/uploads/2015/09/music-note-icon.png" alt="">
+      </div>
+      <div class="loading-bar" v-if="!showNavbar"></div>
     </div>
-    <button  type="button" class="btn btn-primary mt-5 ">Pokračovať</button>
-
-
-    
-
- </div>
- 
-</template>
-     
-     <script>
-     export default {
-       name: 'Loading',
-     
-     }
-     </script>
-     
-     <!-- Add "scoped" attribute to limit CSS to this component only -->
-     <style lang="scss" scoped>
-     .background{
-        background-image: url("https://data.whicdn.com/images/269137684/original.gif");
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 900px;
-        overflow-x: hidden !important;
-        overflow-y: hidden !important;
-        .carti{
-            height: 200px !important;
-        }
+    <navbar v-if="showNavbar" />
+  </template>
+  
+  <script>
+  import Navbar from '../components/navbar.vue'
+  
+  export default {
+    components: {
+      Navbar
+    },
+    data() {
+      return {
+        showNavbar: false
       }
-
-      html{
-        margin: 0px !important;
+    },
+    mounted() {
+      setTimeout(() => {
+        this.showNavbar = true
+      }, 10000)
+    }
+  };
+  </script>
+  
+  <style scoped>
+    .jumbotron {
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: red;
+      color: black !important;
+      border-radius: 0px 0px 90px 90px;
+    }
+  
+    .bounce {
+      font-weight: 600;
+      animation: bounce 2s ease-in-out infinite;
+    }
+  
+    .lead {
+      font-weight: 400;
+    }
+  
+    img {
+      height: auto;
+      width: 100px;
+      margin-top: 20px;
+    }
+  
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
       }
-
-      .fill-5 {
-        animation: fill 5s linear 1;
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
     }
-    @keyframes fill {
-        0% {
-            width: 0%;
-        }
-    
-        100% {
-            width: 100%;
-        }
+  
+    .bg {
+      background-color: rgba(44, 44, 44, 1);
+      height: 100vh;
+      width: 100vw;
     }
-    .progress {
-        --bs-progress-height: 1rem;
-        --bs-progress-font-size: 0.75rem;
-        --bs-progress-bg: #e9ecef;
-        --bs-progress-border-radius: 0.375rem;
-        --bs-progress-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
-        --bs-progress-bar-color: #fff;
-        --bs-progress-bar-bg: #0d6efd;
-        --bs-progress-bar-transition: width 0.6s ease;
-        display: flex;
-        height: var(--bs-progress-height);
-        overflow: hidden;
-        font-size: var(--bs-progress-font-size);
-        background-color: var(--bs-progress-bg);
-        border-radius: var(--bs-progress-border-radius);
+  
+    .loading-bar {
+      height: 5px;
+      background-color: black;
+      width: 60%;
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      right: 20%;
+      animation: loading 10s linear;
     }
-    .progress-bar {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-        color: var(--bs-progress-bar-color);
-        text-align: center;
-        white-space: nowrap;
-        background-color: var(--bs-progress-bar-bg);
-        transition: var(--bs-progress-bar-transition);
+  
+    @keyframes loading {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 60%;
+      }
     }
-
-
-
-     </style>
-     
+  
+    navbar {
+      opacity: 0;
+      animation: fadein 5s;
+    }
+  
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 5;
+      }
+    }
+  </style>
+  
