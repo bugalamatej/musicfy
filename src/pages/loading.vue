@@ -1,9 +1,10 @@
 <template>
     <div class="bg">
       <div class="jumbotron jumbotron-fluid text-white text-center">
-        <h1 class="display-4 animated bounce delay-2s">Musicfy</h1>
-        <p class="lead">Stream your favorite tunes anytime, anywhere.</p>
-        <img src="https://awc.edu/wp-content/uploads/2015/09/music-note-icon.png" alt="">
+        
+        <img
+        class="logo"
+        src="../assets/images/musicfy-logo-removebg-preview.png" alt="">
       </div>
       <div class="loading-bar" v-if="!showNavbar"></div>
     </div>
@@ -38,6 +39,9 @@
       justify-content: center;
       align-items: center;
       background-color: red;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
       color: black !important;
       border-radius: 0px 0px 90px 90px;
     }
@@ -70,20 +74,22 @@
     }
   
     .bg {
-      background-color: rgba(44, 44, 44, 1);
+      background-color: black;
       height: 100vh;
       width: 100vw;
     }
   
     .loading-bar {
+        margin-top: 10px;
       height: 5px;
-      background-color: black;
+      background-color: red;
       width: 60%;
       position: absolute;
       top: 50%;
       left: 20%;
       right: 20%;
       animation: loading 10s linear;
+      border-radius: 50px;
     }
   
     @keyframes loading {
@@ -107,6 +113,11 @@
       to {
         opacity: 5;
       }
+    }
+
+    .logo{
+        height: 90%;
+        width: auto;
     }
   </style>
   
