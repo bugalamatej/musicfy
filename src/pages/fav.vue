@@ -1,187 +1,86 @@
 <template>
     <div class="bg">
-        <div class="music-app">
-            <div class="header">
-              <h1>My Musicfy</h1>
-              <p>Your favourite songs</p>
-            </div>
-            <div class="songs-list m-5 br">
-                <div class="song" @click="playSong('Alone')">
-                    <p>Alone</p>
-                    <p class="artist">Alan Walker</p>
-                  </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-              <div class="song" @click="playSong('Alone')">
-                <p>Alone</p>
-                <p class="artist">Alan Walker</p>
-              </div>
-            </div>
-            <div class="player mb-5" v-if="showPlayer">
-              <audio ref="audio" :src="'../assets/music/Alone.mp3' + playingSong + '.mp3'" controls></audio>
-              <p class="now-playing">Now playing: {{ playingSong }} by {{ playingArtist }}</p>
-            </div>
+      <div class="music-app">
+        <div class="header">
+          <h1>My Musicfy</h1>
+          <p>Your favourite songs</p>
+        </div>
+        <div class="songs-list m-5 br">
+          <div
+            class="song"
+            v-for="(song, index) in songs"
+            :key="index"
+            @click="playSong(song.title, song.artist, song.src)"
+          >
+            <p>{{ song.title }}</p>
+            <p class="artist">{{ song.artist }}</p>
           </div>
-          <navbar/>
+        </div>
+        <div class="player mb-5" v-if="showPlayer">
+          <audio ref="audio" :src="playingSongSrc" controls></audio>
+          <p class="now-playing">Now playing: {{ playingSong }} by {{ playingArtist }}</p>
+        </div>
+      </div>
+      <navbar />
     </div>
-</template>
-  
+  </template>
   <script>
-  import Navbar from '../components/navbar.vue'
+  import Navbar from "../components/navbar.vue";
+  
   export default {
     data() {
       return {
         showPlayer: false,
-        playingSong: '',
-        playingArtist: ''
-      }
+        playingSong: "",
+        playingArtist: "",
+        playingSongSrc: "",
+        songs: [
+          { title: "Alone", artist: "Alan Walker", src: "../assets/music/Alone.mp3" },
+          { title: "Better", artist: "Unknown", src: "../assets/music/Better.mp3" },
+          { title: "Survive", artist: "Unknown", src: "../assets/music/Survive.mp3" },
+          { title: "Sweet", artist: "Unknown", src: "../assets/music/Sweet.mp3" },
+          { title: "What Is Love", artist: "Haddaway", src: "../assets/music/What Is Love.mp3" },
+          { title: "The Deep", artist: "Nick Middleton", src: "../assets/music/The Deep.mp3" },
+        ],
+      };
     },
     methods: {
-      playSong(song) {
-        this.showPlayer = true
-        this.playingSong = song
-        this.playingArtist = 'Alan Walker'
-        this.$refs.audio.play()
-      }
+      playSong(title, artist, src) {
+        this.showPlayer = true;
+        this.playingSong = title;
+        this.playingArtist = artist;
+        this.playingSongSrc = src;
+        this.$refs.audio.play();
+      },
     },
     components: {
-      Navbar
-    }
-  }
+      Navbar,
+    },
+  };
   </script>
-  
   <style scoped>
   .music-app {
     background-color: black;
-    color: #fff;
-    padding: 20px;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
   }
-  
   .header {
     text-align: center;
   }
-  
-  .header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .header p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
   .songs-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
   }
-  
   .song {
-    background-color: #444;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    background-color: #333;
+    color: white;
     text-align: center;
-  }
-  
-  .artist {
-    font-size: 0.8rem;
-    color: #bbb;
-  }
-  
-  .player {
-    background-color: #444;
-    padding: 20px;
-    margin-top: 20px;
     border-radius: 10px;
-    text-align: center;
-  }
-  
-  audio {
-    width: 70%;
-  }
-  
-  .now-playing {
-    font-size: 1.2rem;
-    margin-top: 10px;
+    margin: 10;
   }
 
-
-  .bg {
-    height: 150vh; 
-    background-color: black;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .br{
-    border-bottom: 1px solid grey;
-    border-radius: 5px;
-  }
-  </style>
-  
+</style>

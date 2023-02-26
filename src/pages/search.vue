@@ -8,11 +8,15 @@
             <button class="btn btn-outline-secondary" type="button" @click="searchSong">Search</button>
           </div>
         </div>
-        <audio v-if="selectedSong" :src="selectedSong" controls></audio>
+        <div v-if="selectedSong">
+          <p class="text-white">{{selectedSong.title}} by {{selectedSong.artist}}</p>
+          <audio :src="selectedSong.src" controls></audio>
+        </div>
       </div>
     </div>
     <navbar />
   </template>
+  
   <script>
   import Navbar from '../components/navbar.vue'
   export default {
@@ -20,14 +24,14 @@
       return {
         searchTerm: "",
         songs: [
-          { title: "Alone", src: require("../assets/music/Alone.mp3") }
+          { title: "Alone", artist: "Alan Walker", src: require("../assets/music/Alone.mp3") }
         ],
         selectedSong: null
       };
     },
     methods: {
       searchSong() {
-        this.selectedSong = this.songs.find(song => song.title.toLowerCase().includes(this.searchTerm.toLowerCase())).src;
+        this.selectedSong = this.songs.find(song => song.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
       }
     },
     components: {
@@ -35,31 +39,35 @@
     }
   };
   </script>
+  
   <style scoped>
-  .bg {
-    height: 100vh; 
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .form-control{
-    border: none;
-    border-radius: 10px 0px 0px 10px  !important;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 1rem;
-  }
-  .btn{
-    background-color: black;
-    font-weight: 600;
-    border: none;
-    border-radius: 0px 10px 10px 0px;
-    color: white;
-    padding: 1rem;
-  }
-
-  h3{
-    color: white;
-  }
-</style>
+    .bg {
+      height: 100vh; 
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-control {
+      border: none;
+      border-radius: 10px 0px 0px 10px  !important;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 1rem;
+    }
+    .btn {
+      background-color: black;
+      font-weight: 600;
+      border: none;
+      border-radius: 0px 10px 10px 0px;
+      color: white;
+      padding: 1rem;
+    }
+    h3 {
+      color: white;
+    }
+    .text-white {
+      color: white;
+    }
+  </style>
+  

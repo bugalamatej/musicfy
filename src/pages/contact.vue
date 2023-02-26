@@ -1,122 +1,149 @@
 <template>
- <div class="bg" style="height: 150vh;">
-    <div class="container my-5">
-        <h2 class="text-center font-weight-bold heading">Contact Us</h2>
-        <p class="text-center text-muted">If you have any questions or want to tell us something. <span class="bold"> Do not hesitate to contact us</span></p>
-        <form class="form my-5">
-          <div class="form-group">
-            <label for="email" class="font-weight-bold">Email</label>
-            <input
-              v-model="form.email"
-              class="form-control border-0"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="message" class="font-weight-bold">Message</label>
-            <textarea
-              v-model="form.message"
-              class="form-control border-0"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block py-2">
-            Submit
-          </button>
-        </form>
+  <div class="bg">
+    <h2 class="text-center font-weight-bold heading">Contact Us</h2>
+    <p class="text-center text-muted">If you have any questions or want to tell us something. <span class="bold"> Do not hesitate to contact us</span></p>
+    <form
+      action="https://formspree.io/f/xeqwgyla"
+      method="POST"
+      class="form-container"
+    >
+      <label>
+        Your email:
+        <input type="email" name="email" class="form-input">
+      </label>
+      <label>
+        Your message:
+        <textarea name="message" class="form-textarea"></textarea>
+      </label>
+      <!-- your other form fields go here -->
+      <button type="submit" class="form-button">Send</button>
+    </form>
+    <div class="card my-5 m-5">
+      <div class="card-body">
+        <p class="text-center font-weight-bold if">If you want to contact me directly, here is my email:</p>
+        <h4 class="text-center">mbugala@gmail.com</h4>
       </div>
-      <div class="card my-5 m-5">
-        <div class="card-body">
-          <p class="text-center font-weight-bold">If you want to contact me directly, here is my email:</p>
-          <h4 class="text-center">mbugala@gmail.com</h4>
-        </div>
-      </div>
+    </div>
+  </div>
+  <navbar />
+</template>
 
-      <navbar/>
- </div>
-  </template>
-  <script>
-   import Navbar from '../components/navbar.vue'
-  export default {
-    data() {
-      return {
-        form: {
-          email: "",
-          message: ""
-        }
-      };
-    },
-    components: {
-      Navbar
-    }
-  };
-  </script>
-  <style scoped>
-  .form {
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-label {
-font-size: 16px;
+<script>
+import Navbar from "../components/navbar.vue";
+
+export default {
+  components: {
+    Navbar,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+
+h2{
+  color: red !important;
+}
+.bg {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
 
-input,
-textarea {
-font-size: 14px;
-height: 50px;
-border-radius: 10px;
-margin-bottom: 20px;
-padding: 10px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+.heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 50px;
 }
 
-button[type="submit"] {
-font-size: 18px;
-font-weight: bold;
-border-radius: 10px;
-margin-top: 20px;
-padding: 15px 30px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.text-muted {
+  font-size: 18px;
+  color: #666;
 }
 
-.bg{
-background-color: black;
-display: flex;
-flex-direction: column;
-align-items: center;
+.bold {
+  font-weight: bold;
+  color: #333;
 }
 
-.bold{
-    font-weight: bold;
+.form-container {
+  justify-content: center !important;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px red;
+  margin-top: 50px;
+  padding: 40px;
+  width: 80%;
+  text-align: center;
 }
+
+.form-input,
+.form-textarea {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  background-color: red;
+ color: #666;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-input:focus-visible{
+  outline-color:red ;
+}
+
+
+
+.form-button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  width: 56%;
+  border: 1px solid red ;
+  display: flex;
+  justify-content: center;
+}
+
+.form-button:hover {
+  background-color: red ;
+}
+
+
 
 .card {
-    max-width: 600px;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  h4 {
-    font-size: 18px;
-    font-weight: bold;
-  }
+  max-width: 600px;
+  margin-bottom: 100px !important;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: red;
+  padding: 20px;
+}
 
-  .btn-primary{
-    background-color: black;
-    border: none;
-  }
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #666;
+}
 
-  .heading{
-    color: white;
-  }
+h4 {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.if{
+  font-weight: 700;
+}
+
 </style>

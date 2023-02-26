@@ -26,7 +26,7 @@
     mounted() {
       setTimeout(() => {
         this.showNavbar = true
-      }, 10000)
+      }, 5000)
     }
   };
   </script>
@@ -88,7 +88,7 @@
       top: 50%;
       left: 20%;
       right: 20%;
-      animation: loading 10s linear;
+      animation: loading 5s linear;
       border-radius: 50px;
     }
   
@@ -119,5 +119,6 @@
         height: 90%;
         width: auto;
     }
+
   </style>
   
