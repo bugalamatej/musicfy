@@ -1,5 +1,6 @@
 <template>
   <div class="container d-flex justify-content-center fixed-bottom">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <ul class="nav justify-content-center align-items-center hover">
       <svg
         @click="$router.push({ name: 'Search' })"
@@ -31,6 +32,13 @@
           d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
         />
       </svg>
+
+
+      <button @click="$router.push({ name: 'Quiz' })">
+        <img src="https://cdn-icons-png.flaticon.com/512/5705/5705144.png" alt="">
+      </button>
+
+
 
       <svg
         @click="$router.push({ name: 'Fav' })"
@@ -71,11 +79,22 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style lang="scss" scoped>
+
+img{
+  height: 3rem;
+  
+}
+
+button{
+  border-radius: 20px;
+  border: none;
+}
+
 .nav {
   height: 80px;
-  background-color: black;
+  background-color: white;
   width: 100%;
 
   border-radius: 50px 50px 0px 0px !important;
@@ -84,6 +103,7 @@ export default {
 .nav-icon {
   height: 50%;
   width: 20%;
+  color: black;
 }
 
 .nav-icon:hover {
@@ -99,4 +119,27 @@ export default {
 .hover {
   border: 1px solid black;
 }
+
+@media (max-width: 576px) {
+  .nav {
+    height: 60px;
+    justify-content: space-around;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .nav-icon {
+    height: 1.5rem;
+  }
+
+  button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 </style>

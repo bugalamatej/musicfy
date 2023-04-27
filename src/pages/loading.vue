@@ -6,6 +6,7 @@
         class="logo"
         src="../assets/images/musicfy-logo-removebg-preview.png" alt="">
       </div>
+    
       <div class="loading-bar" v-if="!showNavbar"></div>
     </div>
     <navbar v-if="showNavbar" />

@@ -24,9 +24,13 @@ const routes = [
     path: '/fav',
     name: 'Fav',
     component: () => import('@/pages/fav.vue')
-  }
+  },
 
-
+  {
+    path: '/quiz',
+    name: 'Quiz',
+    component: () => import('@/pages/quiz.vue')
+  },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
