@@ -1,9 +1,10 @@
 <template>
-  <div class="container d-flex justify-content-center fixed-bottom">
+  <div class="container d-flex justify-content-center fixed-top">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <ul class="nav justify-content-center align-items-center hover">
       <svg
         @click="$router.push({ name: 'Search' })"
+        :class="{ 'nav-icon': true, 'active-icon': activeIcon === 'Search' }"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -18,6 +19,7 @@
 
       <svg
         @click="$router.push({ name: 'Main' })"
+        :class="{ 'nav-icon': true, 'active-icon': activeIcon === 'Main' }"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -42,6 +44,7 @@
 
       <svg
         @click="$router.push({ name: 'Fav' })"
+        :class="{ 'nav-icon': true, 'active-icon': activeIcon === 'Fav' }"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -57,6 +60,7 @@
 
       <svg
         @click="$router.push({ name: 'Contact' })"
+        :class="{ 'nav-icon': true, 'active-icon': activeIcon === 'Contact' }"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -76,6 +80,17 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+      activeIcon: "", // Initialize active icon
+    };
+  },
+  methods: {
+    navigate(iconName) {
+      this.$router.push({ name: iconName });
+      this.activeIcon = iconName; // Set the active icon
+    },
+  },
 };
 </script>
 
@@ -84,17 +99,24 @@ img {
   height: 3rem;
 }
 
+/* Apply red color to active icon */
+.active-icon {
+  color: white !important;
+}
+
 button {
   border-radius: 20px;
   border: none;
 }
 
+
+
 .nav {
   height: 80px;
-  background-color: white;
+  background-color: #1db954;
   width: 100%;
 
-  border-radius: 50px 50px 0px 0px !important;
+  border-radius: 0px 0px 50px 50px !important;
 }
 
 .nav-icon {
@@ -104,17 +126,17 @@ button {
 }
 
 .nav-icon:hover {
-  color: red;
+  color: white;
   cursor: pointer;
 }
 
 .hover:hover {
-  border: 1px solid red;
+  border: 1px solid #1db954;
   border-bottom: 0px !important;
 }
 
 .hover {
-  border: 1px solid black;
+  border: 1px solid #1db954;
 }
 
 @media (max-width: 576px) {

@@ -1,114 +1,161 @@
 <template>
-  <div class="bg">
-    <div class="container my-5 text-center">
-      <h3 class="text-white my-5">Find a song you would like to listen</h3>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search for a song" v-model="searchTerm">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="searchSong">Search</button>
+<div class="container-fluid bg">
+  <div class="margin container d-flex">
+    <navbar />
+    <h1 class="text-center">Find a song you would like to listen</h1>
+    <div class="search-bar">
+      <input v-model="searchTerm" @input="filterSongs" placeholder="Search for a song or artist">
+      <button class="search" @click="applyFilter">Search</button>
+    </div>
+    <div class="row">
+      <div class="col-md-4" v-for="song in filteredSongs" :key="song.id">
+        <div class="card text-start mb-3">
+          <img class="card-img-top" src="../assets/images/musicfy-logo-removebg-preview.png">
+          <div class="card-body">
+            <h5 class="card-title">{{ song.interpret }}</h5>
+            <p class="card-text">{{ song.nazov_skladby }}</p>
+            <audio controls>
+              <source :src="song.cesta" type="audio/mpeg" />
+            </audio>
+          </div>
         </div>
       </div>
-      <div v-if="selectedSong">
-        <p class="text-white">{{selectedSong.title}} by {{selectedSong.artist}}</p>
-        <audio :src="selectedSong.src" controls></audio>
-      </div>
-
+      <div v-if="filteredSongs.length === 0" class="col-12">
+        <p>No songs found.</p>
+      </div>  
     </div>
-    <navbar></navbar>
   </div>
+</div>
 </template>
-  
+
+
 <script>
-import Navbar from '../components/navbar.vue'
+import axios from 'axios';
+import Navbar from "../components/navbar.vue";
+
 export default {
+  components: {
+    Navbar,
+  },
+
   data() {
     return {
-      searchTerm: "",
-      songs: [
-        { title: "Alone", artist: "Alan Walker", src: require("../assets/music/Alone.mp3")}
-      ],
-      selectedSong: null
+      songs: [],
+      searchTerm: '',
+      filteredSongs: [],
     };
   },
-  methods: {
-    searchSong() {
-      this.selectedSong = this.songs.find(song => song.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
-    }
+  created() {
+    this.getAllSongs();
   },
-  components: {
-    Navbar
-  }
+  methods: {
+    getAllSongs() {
+      axios
+        .get('http://127.0.0.1:8000/api/get-all-songs')
+        .then((response) => {
+          this.songs = response.data;
+        })
+        .catch((error) => {
+          console.error('Error fetching songs:', error);
+        });
+    },
+    filterSongs() {
+      const searchTermLowerCase = this.searchTerm.toLowerCase();
+      this.filteredSongs = this.songs.filter((song) => {
+        return (
+          song.interpret.toLowerCase().includes(searchTermLowerCase) ||
+          song.nazov_skladby.toLowerCase().includes(searchTermLowerCase)
+        );
+      });
+    },
+    applyFilter() {
+      this.filterSongs();
+    },
+  },
 };
 </script>
 
 
 <style scoped>
-  .bg {
-    height: 100vh; 
-    background-color: black;
+
+.bg {
+  background: black url("../assets/images/musicfy-logo-removebg-preview.png") no-repeat top;
+  background-color: black;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  padding: 50px;
+  min-height: 110vh;
+}
+
+
+  li::marker {
+    display: none !important;
+    color: #1ed760;
+  }
+
+  .search {
+    border-radius: 10px 30px 30px 10px !important;
+  }
+
+body{
+  background-color: black !important;
+}
+
+  h1 {
+    color: white;
+  }
+
+  input {
+    border-radius: 30px 10px 10px 30px;
+    border: none;
+    padding: 8px;
+  }
+
+  .card {
+    background-color: #1ed760;
+    margin: 30px;
+    transition: transform 0.2s ease; /* Added transition property for card scaling */
+  }
+
+  .card:hover {
+    transform: scale(1.1); /* Scale up the card when hovered */
+  }
+
+  .card-img-top {
+    height: 100px;
+    width: 110px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('../assets/images/musicfy-logo-removebg-preview.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position: top;
   }
 
-  .form-control {
-    border: none;
-    border-radius: 10px 0px 0px 10px;
-    background-color: black;
-    color: white;
-    padding: 1rem;
-    width: 70%;
-    margin-right: -4px;
-  }
-
-  .btn {
-    background-color: black;
-    font-weight: 600;
-    border: none;
-    border-radius: 0px 10px 10px 0px;
-    color: white;
-    padding: 1rem;
-  }
-
-  .btn:hover {
-    background-color: red;
-    color: white;
-  }
-
-  h3 {
-    color: white;
-    font-size: 2rem;
-  }
-
-  .text-white {
-    color: white;
-  }
-
-  .audio-info {
-    display: flex;
+  .container {
     flex-direction: column;
+    justify-content: center !important;
+  }
+
+  .margin {
+    margin-top: 100px;
+    
+  }
+
+  .search-bar {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
   }
 
-  .song-title {
+  .search-bar input {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .search-bar button {
+    padding: 8px 16px;
+    background-color: #1ed760;
     color: white;
-    font-size: 1.5rem;
-    margin: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
-
-  .song-artist {
-    color: #8b949e;
-    font-size: 1rem;
-    margin: 0;
-  }
-
 </style>
-  
 
+//velke skladby prehravanie
