@@ -1,7 +1,6 @@
 <template>
     <div class="bg">
       <div class="jumbotron jumbotron-fluid text-white text-center">
-        
         <img
         class="logo"
         src="../assets/images/musicfy-logo-removebg-preview.png" alt="">

@@ -1,6 +1,6 @@
 <template>
   <div class="container d-flex justify-content-center fixed-bottom">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <ul class="nav justify-content-center align-items-center hover">
       <svg
         @click="$router.push({ name: 'Search' })"
@@ -33,12 +33,12 @@
         />
       </svg>
 
-
       <button @click="$router.push({ name: 'Quiz' })">
-        <img src="https://cdn-icons-png.flaticon.com/512/5705/5705144.png" alt="">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/5705/5705144.png"
+          alt=""
+        />
       </button>
-
-
 
       <svg
         @click="$router.push({ name: 'Fav' })"
@@ -79,15 +79,12 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
-
-img{
+img {
   height: 3rem;
-  
 }
 
-button{
+button {
   border-radius: 20px;
   border: none;
 }
@@ -141,5 +138,4 @@ button{
     height: 40px;
   }
 }
-
 </style>

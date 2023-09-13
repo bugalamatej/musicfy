@@ -1,7 +1,7 @@
 <template>
   <div class="bg">
     <h2 class="text-center font-weight-bold heading">Contact Us</h2>
-    <p class="text-center text-muted">
+    <p class="text-center p">
       If you have any questions or want to tell us something. <span class="bold">Do not hesitate to contact us</span>
     </p>
     <form action="https://formspree.io/f/xeqwgyla" method="POST" class="form-container">
@@ -35,11 +35,21 @@ export default {
   $form-bg-color: #f5f5f5;
 
   .bg {
-    background-color: $secondary-color;
+   background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 180vh;
+  }
+
+  .form-button :hover{
+    color:black !important;
+    background-color: red !important;
+  }
+
+  
+  .p{
+    color: white;
   }
 
   .heading {

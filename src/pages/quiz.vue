@@ -206,4 +206,38 @@
       font-size: 2rem;
     }
   }
+
+
+  .options-container {
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+  }
+  
+ 
+  
+  .radio-btn:checked + .option-label {
+    border: 2px solid #222;
+    padding: 0.5rem;
+  }
+  
+  .start-button:hover, .next-button:hover, .restart-button:hover, .leave-button:hover, .option-label:hover {
+    cursor: pointer;
+  }
+  
+  .container {
+    background-image: url('../assets/images/musicfy-logo-removebg-preview.png');
+    background-repeat: no-repeat;
+    background-size: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-image 1s ease;
+  }
+
+
   </style>
